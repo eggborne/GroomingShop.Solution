@@ -1,0 +1,35 @@
+@{
+  Layout = "_Layout";
+}
+
+@using GroomingShop.Models;
+
+<h2>All Pets</h2>
+<hr />
+
+@if (@Model.Count == 0)
+{
+  <h3>No pets have been added yet!</h3>
+} 
+
+<ul>
+  @foreach(Pet pet in Model)
+  {
+    <li>
+      <div>@pet.Name | @pet.Breed</div>
+      <a href='@Url.Action("Details", new { id = pet.PetId })'>
+        <button>View Details</button>
+      </a>
+    </li>
+  }
+</ul>
+
+<a href='@Url.Action("Create")'>
+  <button class="green">Add New Pet</button>
+</a>
+@* <a href='@Url.Action("Create", "Patients")'>
+  <button class="green">Add New Patient</button>
+</a> *@
+<a href='@Url.Action("Index", "Home")'>
+  <button>Home</button>
+</a>
