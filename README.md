@@ -1,1 +1,1 @@
-![ScreenShot](/dbdiagram.png)
+![ScreenShot](/db.png)
