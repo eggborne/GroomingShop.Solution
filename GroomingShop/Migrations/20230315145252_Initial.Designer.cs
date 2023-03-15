@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroomingShop.Migrations
 {
     [DbContext(typeof(GroomingShopContext))]
-    [Migration("20230315053956_Initial")]
+    [Migration("20230315145252_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

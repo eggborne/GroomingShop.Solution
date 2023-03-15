@@ -88,6 +88,21 @@ textarea {
   justify-content: center;
 }
 
+.appointment-list > li {
+	gap: 1rem;
+}
+.appointment-list div {
+	min-width: 8rem;
+}
+.appointment-list div:first-of-type {
+	font-weight: bold;
+	font-size: 1.5rem;
+	text-align: center;
+}
+.appointment-list div:last-of-type {
+	flex-grow: 1;
+}
+
 form {
 	display: flex;
 	flex-direction: column;
