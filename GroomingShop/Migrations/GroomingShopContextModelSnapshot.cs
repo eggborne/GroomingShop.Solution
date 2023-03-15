@@ -37,10 +37,10 @@ namespace GroomingShop.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("ParentPetId")
+                    b.Property<int>("ParentId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PetId")
+                    b.Property<int>("PetId")
                         .HasColumnType("int");
 
                     b.Property<TimeOnly>("StartTime")
@@ -50,7 +50,7 @@ namespace GroomingShop.Migrations
 
                     b.HasIndex("GroomerId");
 
-                    b.HasIndex("ParentPetId");
+                    b.HasIndex("ParentId");
 
                     b.HasIndex("PetId");
 
@@ -174,15 +174,17 @@ namespace GroomingShop.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GroomingShop.Models.Pet", "Parent")
+                    b.HasOne("GroomingShop.Models.Parent", "Parent")
                         .WithMany()
-                        .HasForeignKey("ParentPetId")
+                        .HasForeignKey("ParentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GroomingShop.Models.Pet", "Pet")
                         .WithMany()
-                        .HasForeignKey("PetId");
+                        .HasForeignKey("PetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Groomer");
 

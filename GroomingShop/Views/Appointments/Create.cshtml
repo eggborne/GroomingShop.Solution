@@ -9,7 +9,7 @@
 
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(ViewBag => ViewBag.Groomer.GroomerId)
+  <input hidden name="groomerId" value=@ViewBag.Groomer.GroomerId>
   <div class="form-column">
     <div class="form-text-input-area">
       <span>@Html.LabelFor(model => model.Date)</span>
@@ -24,13 +24,13 @@
       <span>@Html.TextBoxFor(model => model.EndTime, new { @type="time"} )</span>
     </div>
   </div>
-  @* <div class="form-row">
+  <div class="form-row">
     <span>Parent</span>
-    <span>@Html.DropDownList("ParentId")</span>
-  </div> *@
+    <span>@Html.DropDownList("parentId")</span>
+  </div>
   <div class="form-row">
     <span>Pet</span>
-    <span>@Html.DropDownList("PetId")</span>
+    <span>@Html.DropDownList("petId")</span>
   </div>
   <button class="green" type="submit">Add Appointment</button>
 }

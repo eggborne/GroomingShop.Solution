@@ -18,14 +18,18 @@ namespace GroomingShop.Controllers
 
     public ActionResult Index()
     {
-      List<Appointment> model = _db.Appointments.ToList();
+      List<Appointment> model = _db.Appointments
+                                .Include(appointment => appointment.Groomer)
+                                .Include(appointment => appointment.Parent)
+                                .Include(appointment => appointment.Pet)
+                                .ToList();
       return View(model);
     }
 
     public ActionResult Create(int id)
     {
       ViewBag.Groomer = _db.Groomers.FirstOrDefault(groomer => groomer.GroomerId == id);
-      // ViewBag.ParentId = new SelectList(_db.Parents, "ParentId", "LastName");
+      ViewBag.ParentId = new SelectList(_db.Parents, "ParentId", "LastName");
       ViewBag.PetId = new SelectList(_db.Pets, "PetId", "Name");
       return View();
     }
@@ -33,7 +37,6 @@ namespace GroomingShop.Controllers
     [HttpPost]
     public ActionResult Create(Appointment appointment)
     {
-      // appointment.PetId = PetId;
       _db.Appointments.Add(appointment);
 
       _db.SaveChanges();
@@ -44,6 +47,7 @@ namespace GroomingShop.Controllers
     {
       Appointment thisAppointment = _db.Appointments
                                     .Include(appointment => appointment.Groomer)
+                                    .Include(appointment => appointment.Parent)
                                     .Include(appointment => appointment.Pet)
                                     .FirstOrDefault(appointment => appointment.AppointmentId == id);
       return View(thisAppointment);

@@ -97,8 +97,8 @@ namespace GroomingShop.Migrations
                     Notes = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     GroomerId = table.Column<int>(type: "int", nullable: false),
-                    ParentPetId = table.Column<int>(type: "int", nullable: false),
-                    PetId = table.Column<int>(type: "int", nullable: true)
+                    ParentId = table.Column<int>(type: "int", nullable: false),
+                    PetId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -110,16 +110,17 @@ namespace GroomingShop.Migrations
                         principalColumn: "GroomerId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Appointments_Pets_ParentPetId",
-                        column: x => x.ParentPetId,
-                        principalTable: "Pets",
-                        principalColumn: "PetId",
+                        name: "FK_Appointments_Parents_ParentId",
+                        column: x => x.ParentId,
+                        principalTable: "Parents",
+                        principalColumn: "ParentId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Appointments_Pets_PetId",
                         column: x => x.PetId,
                         principalTable: "Pets",
-                        principalColumn: "PetId");
+                        principalColumn: "PetId",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -156,9 +157,9 @@ namespace GroomingShop.Migrations
                 column: "GroomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Appointments_ParentPetId",
+                name: "IX_Appointments_ParentId",
                 table: "Appointments",
-                column: "ParentPetId");
+                column: "ParentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_PetId",

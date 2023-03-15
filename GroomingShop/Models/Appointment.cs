@@ -13,8 +13,9 @@ namespace GroomingShop.Models
     public string Notes { get; set; }
     public int GroomerId { get; set; }
     public Groomer Groomer { get; set; }
-    public int ParentPetId { get; set; }
-    public Pet Parent { get; set; }
+    public int ParentId { get; set; }
+    public Parent Parent { get; set; }
+    public int PetId { get; set; }
     public Pet Pet { get; set; }
   }
 }

@@ -8,7 +8,6 @@ namespace GroomingShop.Models
     public DbSet<Pet> Pets { get; set; }
     public DbSet<Parent> Parents { get; set; }
     public DbSet<Appointment> Appointments { get; set; }
-
     public DbSet<ParentPet> ParentPets { get; set; }
 
     public GroomingShopContext(DbContextOptions options) : base(options) { }

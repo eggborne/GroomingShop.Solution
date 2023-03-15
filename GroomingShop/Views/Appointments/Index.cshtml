@@ -17,7 +17,8 @@
   {
     <li>
       <div>@appointment.Pet.Name | @appointment.Pet.Breed</div>
-      <div>@appointment.Groomer.FirstName @appointment.Groomer.LastName | @appointment.StartTime to @appointment.EndTime</div>
+      <div>@appointment.Parent.FirstName @appointment.Parent.LastName</div>
+      <div>@appointment.Groomer.Role: @appointment.Groomer.FirstName @appointment.Groomer.LastName | @appointment.StartTime to @appointment.EndTime</div>
       @* <a href='@Url.Action("Details", new { id = appointment.AppointmentId })'>
         <button>View Details</button>
       </a> *@
