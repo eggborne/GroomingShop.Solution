@@ -4,8 +4,8 @@
 
 @model GroomingShop.Models.Appointment
 
-<h2>New appointment for groomer @ViewBag.Groomer.FirstName @ViewBag.Groomer.LastName</h2>
-<hr />
+<h2>New appointment for @ViewBag.Groomer.Role @ViewBag.Groomer.FirstName @ViewBag.Groomer.LastName</h2>
+
 
 @using (Html.BeginForm())
 {
