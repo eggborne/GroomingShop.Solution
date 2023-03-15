@@ -17,13 +17,13 @@
   {
     <li>
       <div>@pet.Name</div>
-      <div>Breed: @pet.Breed</div>
-      <div>Gender: @pet.Gender</div>
-      <div>Weight: @pet.Weight</div>
-      <div>Exp. Date: @pet.VaccExpDate</div>
-      <div>Vet: @pet.Vet</div>
-      <div>Vet Phone: @pet.VetPhone</div>
-      <div>Notes: @pet.Notes</div>
+      <div>@pet.Breed</div>
+      <div>
+        @foreach (ParentPet join in pet.JoinEntities) {
+          <span>@join.Parent.FirstName @join.Parent.LastName</span>
+        }
+      </div>
+      
       <a href='@Url.Action("Details", new { id = pet.PetId })'>
         <button>View Details</button>
       </a>

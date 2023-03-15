@@ -76,6 +76,17 @@ textarea {
   flex-grow: 1;
 }
 
+.pet-list {
+  flex-direction: row;
+}
+
+.pet-list > li {
+  padding: 1rem;
+  width: min-content;
+  min-width: 8rem;
+  justify-content: center;
+}
+
 form {
 	display: flex;
 	flex-direction: column;

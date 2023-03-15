@@ -19,7 +19,7 @@
       <div>@parent.FirstName @parent.LastName</div>
       <div>Phone: @parent.Phone</div>
       <div>Email: @parent.Email</div>
-      <div>Notes: @parent.Notes</div>
+      <div>Pets: @parent.JoinEntities.Count</div>
       <a href='@Url.Action("Create", "Pets", new { id = parent.ParentId })'>
         <button class="green">Add a Pet</button>
       </a>

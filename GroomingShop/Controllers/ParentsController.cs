@@ -18,7 +18,10 @@ namespace GroomingShop.Controllers
 
     public ActionResult Index()
     {
-      List<Parent> model = _db.Parents.ToList();
+      List<Parent> model = _db.Parents
+                          .Include(parent => parent.JoinEntities)
+                          .ThenInclude(join => join.Pet)
+                          .ToList();
       return View(model);
     }
 

@@ -1,0 +1,43 @@
+@{
+  Layout = "_Layout";
+}
+
+@model GroomingShop.Models.Pet
+@using GroomingShop.Models
+
+<h2>Pet Details for @Html.DisplayFor(model => model.Name)</h2>
+<hr />
+
+<ul>
+  <li>
+    <div>Breed: @Model.Breed</div>
+    <div>Gender: @Model.Gender</div>
+    <div>Weight: @Model.Weight</div>
+    <div>Exp. Date: @Model.VaccExpDate</div>
+    <div>Vet: @Model.Vet</div>
+    <div>Vet Phone: @Model.VetPhone</div>
+    <div>Notes: @Model.Notes</div>
+  </li>
+</ul>
+<h3>Parents:</h3>
+<ul>
+  @foreach(ParentPet join in Model.JoinEntities) {
+    <li>
+      @join.Parent.FirstName @join.Parent.LastName
+    </li>
+  } 
+</ul>
+
+@* <a href='@Url.Action("AddPet", new { id = Model.ParentId })'>
+  <button>Add a Pet</button>
+</a> *@
+
+@* <a href='@Url.Action("Edit", new { id = Model.ParentId })'>
+  <button class="yellow">Edit Parent</button>
+</a> *@
+@* <a href='@Url.Action("Delete", new { id = Model.ParentId })'>
+  <button class="red">Delete Parent</button>
+</a> *@
+<a href='@Url.Action("Index")'>
+  <button>Back to List</button>
+</a>

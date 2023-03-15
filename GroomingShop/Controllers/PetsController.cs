@@ -18,7 +18,10 @@ namespace GroomingShop.Controllers
 
     public ActionResult Index()
     {
-      List<Pet> model = _db.Pets.ToList();
+      List<Pet> model = _db.Pets
+                        .Include(pet => pet.JoinEntities)
+                        .ThenInclude(join => join.Parent)
+                        .ToList();
       return View(model);
     }
 
@@ -38,13 +41,19 @@ namespace GroomingShop.Controllers
 
     public ActionResult Details(int id)
     {
-      Pet thisPet = _db.Pets.FirstOrDefault(Pet => Pet.PetId == id);
+      Pet thisPet = _db.Pets
+                    .Include(pet => pet.JoinEntities)
+                    .ThenInclude(join => join.Parent)
+                    .FirstOrDefault(pet => pet.PetId == id);
       return View(thisPet);
     }
 
     public ActionResult Edit(int id)
     {
-      Pet thisPet = _db.Pets.FirstOrDefault(Pet => Pet.PetId == id);
+      Pet thisPet = _db.Pets
+                    .Include(pet => pet.JoinEntities)
+                    .ThenInclude(join => join.Parent)
+                    .FirstOrDefault(pet => pet.PetId == id);
       return View(thisPet);
     }
 
