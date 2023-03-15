@@ -25,11 +25,11 @@ namespace GroomingShop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateOnly>("Date")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime(6)");
 
-                    b.Property<TimeOnly>("EndTime")
-                        .HasColumnType("time(6)");
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("GroomerId")
                         .HasColumnType("int");
@@ -43,8 +43,8 @@ namespace GroomingShop.Migrations
                     b.Property<int>("PetId")
                         .HasColumnType("int");
 
-                    b.Property<TimeOnly>("StartTime")
-                        .HasColumnType("time(6)");
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("AppointmentId");
 
@@ -66,8 +66,8 @@ namespace GroomingShop.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("longtext");
 
-                    b.Property<DateOnly>("HireDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("HireDate")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("LastName")
                         .HasColumnType("longtext");
@@ -149,8 +149,8 @@ namespace GroomingShop.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("longtext");
 
-                    b.Property<DateOnly>("VaccExpDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("VaccExpDate")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Vet")
                         .HasColumnType("longtext");

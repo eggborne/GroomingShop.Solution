@@ -10,10 +10,10 @@
 
 <ul>
   <li>
-    <div>Breed: @Model.Breed</div>
-    <div>Gender: @Model.Gender</div>
+    <div>Breed: @Html.DisplayFor(model => model.Breed)</div>
+    <div>Gender: @Html.DisplayFor(model => model.Gender)</div>
     <div>Weight: @Model.Weight</div>
-    <div>Exp. Date: @Model.VaccExpDate</div>
+    <div>Exp. Date: @DateOnly.FromDateTime(Model.VaccExpDate)</div>
     <div>Vet: @Model.Vet</div>
     <div>Vet Phone: @Model.VetPhone</div>
     <div>Notes: @Model.Notes</div>

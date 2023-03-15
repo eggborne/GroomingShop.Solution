@@ -21,7 +21,7 @@
       <div>Email: @parent.Email</div>
       <div>Pets: @parent.JoinEntities.Count</div>
       <a href='@Url.Action("Create", "Pets", new { id = parent.ParentId })'>
-        <button class="green">Add a Pet</button>
+        <button class="green">Add Pet</button>
       </a>
       <a href='@Url.Action("Details", new { id = parent.ParentId })'>
         <button>View Details</button>

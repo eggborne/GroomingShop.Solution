@@ -25,7 +25,7 @@ namespace GroomingShop.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     LastName = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    HireDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    HireDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Notes = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
@@ -71,7 +71,7 @@ namespace GroomingShop.Migrations
                     Gender = table.Column<string>(type: "varchar(1)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Weight = table.Column<int>(type: "int", nullable: false),
-                    VaccExpDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    VaccExpDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Vet = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     VetPhone = table.Column<string>(type: "longtext", nullable: true)
@@ -91,9 +91,9 @@ namespace GroomingShop.Migrations
                 {
                     AppointmentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Date = table.Column<DateOnly>(type: "date", nullable: false),
-                    StartTime = table.Column<TimeOnly>(type: "time(6)", nullable: false),
-                    EndTime = table.Column<TimeOnly>(type: "time(6)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    StartTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    EndTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Notes = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     GroomerId = table.Column<int>(type: "int", nullable: false),

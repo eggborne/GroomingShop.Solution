@@ -18,7 +18,7 @@
     <li>
       <div>@groomer.FirstName @groomer.LastName</div>
       <div>Role: @groomer.Role</div>
-      <div>Hire date: @groomer.HireDate</div>
+      <div>Hire date: @DateOnly.FromDateTime(groomer.HireDate)</div>
       <div>Notes: @groomer.Notes</div>
       <a href='@Url.Action("Details", new { id = groomer.GroomerId })'>
         <button>View Details</button>

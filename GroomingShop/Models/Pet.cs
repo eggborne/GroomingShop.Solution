@@ -10,7 +10,7 @@ namespace GroomingShop.Models
     public string Breed { get; set; }
     public char Gender { get; set; }
     public int Weight { get; set; }
-    public DateOnly VaccExpDate { get; set; }
+    public DateTime VaccExpDate { get; set; }
     public string Vet { get; set; }
     public string VetPhone { get; set; }
     public string Notes { get; set; }

@@ -12,16 +12,16 @@
   <h3>No appointments have been added yet!</h3>
 } 
 
-<ul>
+<ul class="appointment-list">
   @foreach(Appointment appointment in Model)
   {
     <li>
       <div>@appointment.Pet.Name | @appointment.Pet.Breed</div>
       <div>@appointment.Parent.FirstName @appointment.Parent.LastName</div>
-      <div>@appointment.Groomer.Role: @appointment.Groomer.FirstName @appointment.Groomer.LastName | @appointment.StartTime to @appointment.EndTime</div>
-      @* <a href='@Url.Action("Details", new { id = appointment.AppointmentId })'>
-        <button>View Details</button>
-      </a> *@
+      <div>@appointment.Groomer.Role: @appointment.Groomer.FirstName @appointment.Groomer.LastName |@DateOnly.FromDateTime(appointment.Date) @TimeOnly.FromDateTime(appointment.StartTime) to @TimeOnly.FromDateTime(appointment.EndTime)</div>
+      <a href='@Url.Action("Edit", new { id = appointment.AppointmentId })'>
+        <button class="yellow">Edit</button>
+      </a>
     </li>
   }
 </ul>
