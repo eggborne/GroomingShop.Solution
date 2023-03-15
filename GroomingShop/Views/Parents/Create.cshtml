@@ -14,12 +14,32 @@
       <span>@Html.LabelFor(model => model.FirstName, "First Name")</span>
       <span>@Html.TextBoxFor(model => model.FirstName)</span>
     </div>
+  </div>
+  <div class="form-row">
     <div class="form-text-input-area">
       <span>@Html.LabelFor(model => model.LastName, "Last Name")</span>
       <span>@Html.TextBoxFor(model => model.LastName)</span>
     </div>
   </div>
-  <button class="green" type="submit">Add New Parent</button>
+  <div class="form-row">
+    <div class="form-text-input-area">
+      <span>@Html.LabelFor(model => model.Phone, "Phone")</span>
+      <span>@Html.TextBoxFor(model => model.Phone)</span>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-text-input-area">
+      <span>@Html.LabelFor(model => model.Email, "Email")</span>
+      <span>@Html.TextBoxFor(model => model.Email)</span>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-text-input-area">
+      <span>@Html.LabelFor(model => model.Notes, "Notes")</span>
+      <span>@Html.TextAreaFor(model => model.Notes)</span>
+    </div>
+  </div>
+  <button class="green" type="submit">Add Parent</button>
 }
 
 <a href='@Url.Action("Index")'>

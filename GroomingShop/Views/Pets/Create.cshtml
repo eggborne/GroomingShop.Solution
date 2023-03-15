@@ -1,25 +1,63 @@
 @{
   Layout = "_Layout";
 }
-
 @model GroomingShop.Models.Pet
 
-<h2>Add a new pet</h2>
+<h2>Add a new pet for parent @ViewBag.Parent.FirstName @ViewBag.Parent.LastName</h2>
 <hr />
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("AddPet", "Parents", FormMethod.Post))
 {
+  <input hidden name="parentId" value=@ViewBag.Parent.ParentId>
   <div class="form-row">
     <div class="form-text-input-area">
       <span>@Html.LabelFor(model => model.Name, "Name")</span>
       <span>@Html.TextBoxFor(model => model.Name)</span>
     </div>
+  </div>
+  <div class="form-row">
     <div class="form-text-input-area">
       <span>@Html.LabelFor(model => model.Breed, "Breed")</span>
       <span>@Html.TextBoxFor(model => model.Breed)</span>
     </div>
   </div>
-  <button class="green" type="submit">Add New Pet</button>
+  <div class="form-row">
+    <div class="form-text-input-area">
+      <span>@Html.LabelFor(model => model.Gender, "Gender")</span>
+      <span>@Html.TextBoxFor(model => model.Gender)</span>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-text-input-area">
+      <span>@Html.LabelFor(model => model.Weight, "Weight")</span>
+      <span>@Html.TextBoxFor(model => model.Weight)</span>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-text-input-area">
+      <span>@Html.LabelFor(model => model.VaccExpDate, "Vacc. Exp. Date")</span>
+      <span>@Html.TextBoxFor(model => model.VaccExpDate, new { @type="date"} )</span>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-text-input-area">
+      <span>@Html.LabelFor(model => model.Vet, "Vet")</span>
+      <span>@Html.TextBoxFor(model => model.Vet)</span>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-text-input-area">
+      <span>@Html.LabelFor(model => model.VetPhone, "Vet Phone")</span>
+      <span>@Html.TextBoxFor(model => model.VetPhone, new { @type="phonenumber"} )</span>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-text-input-area">
+      <span>@Html.LabelFor(model => model.Notes, "Notes")</span>
+      <span>@Html.TextAreaFor(model => model.Notes)</span>
+    </div>
+  </div>
+  <button class="green" type="submit">Add Pet</button>
 }
 
 <a href='@Url.Action("Index")'>

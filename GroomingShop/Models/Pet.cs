@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 
 namespace GroomingShop.Models
 {
@@ -7,6 +8,12 @@ namespace GroomingShop.Models
     public int PetId { get; set; }
     public string Name { get; set; }
     public string Breed { get; set; }
+    public char Gender { get; set; }
+    public int Weight { get; set; }
+    public DateOnly VaccExpDate { get; set; }
+    public string Vet { get; set; }
+    public string VetPhone { get; set; }
+    public string Notes { get; set; }
     public List<ParentPet> JoinEntities { get; }
   }
 }

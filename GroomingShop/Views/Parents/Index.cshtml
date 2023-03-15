@@ -17,6 +17,12 @@
   {
     <li>
       <div>@parent.FirstName @parent.LastName</div>
+      <div>Phone: @parent.Phone</div>
+      <div>Email: @parent.Email</div>
+      <div>Notes: @parent.Notes</div>
+      <a href='@Url.Action("Create", "Pets", new { id = parent.ParentId })'>
+        <button class="green">Add a Pet</button>
+      </a>
       <a href='@Url.Action("Details", new { id = parent.ParentId })'>
         <button>View Details</button>
       </a>

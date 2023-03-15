@@ -33,6 +33,7 @@ namespace GroomingShop.Controllers
     [HttpPost]
     public ActionResult Create(Appointment appointment)
     {
+      // appointment.PetId = PetId;
       _db.Appointments.Add(appointment);
 
       _db.SaveChanges();

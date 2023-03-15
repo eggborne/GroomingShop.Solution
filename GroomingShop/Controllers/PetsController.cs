@@ -22,18 +22,18 @@ namespace GroomingShop.Controllers
       return View(model);
     }
 
-    public ActionResult Create()
+    public ActionResult Create(int id)
     {
+      ViewBag.Parent = _db.Parents.FirstOrDefault(parent => parent.ParentId == id);
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Pet Pet)
+    public ActionResult Create(Pet Pet, int parentId)
     {
       _db.Pets.Add(Pet);
-
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("AddPet", "Parents", new { Pet, parentId });
     }
 
     public ActionResult Details(int id)

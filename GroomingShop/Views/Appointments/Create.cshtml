@@ -9,15 +9,19 @@
 
 @using (Html.BeginForm())
 {
-   @Html.HiddenFor(ViewBag => ViewBag.GroomerId)
-  <div class="form-row">
+  @Html.HiddenFor(ViewBag => ViewBag.Groomer.GroomerId)
+  <div class="form-column">
+    <div class="form-text-input-area">
+      <span>@Html.LabelFor(model => model.Date)</span>
+      <span>@Html.TextBoxFor(model => model.Date, new { @type="date"} )</span>
+    </div>
     <div class="form-text-input-area">
       <span>@Html.LabelFor(model => model.StartTime, "Start Time")</span>
-      <span>@Html.TextBoxFor(model => model.StartTime)</span>
+      <span>@Html.TextBoxFor(model => model.StartTime, new { @type="time"} )</span>
     </div>
     <div class="form-text-input-area">
       <span>@Html.LabelFor(model => model.EndTime, "End Time")</span>
-      <span>@Html.TextBoxFor(model => model.EndTime)</span>
+      <span>@Html.TextBoxFor(model => model.EndTime, new { @type="time"} )</span>
     </div>
   </div>
   @* <div class="form-row">

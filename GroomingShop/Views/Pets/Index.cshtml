@@ -16,7 +16,14 @@
   @foreach(Pet pet in Model)
   {
     <li>
-      <div>@pet.Name | @pet.Breed</div>
+      <div>@pet.Name</div>
+      <div>Breed: @pet.Breed</div>
+      <div>Gender: @pet.Gender</div>
+      <div>Weight: @pet.Weight</div>
+      <div>Exp. Date: @pet.VaccExpDate</div>
+      <div>Vet: @pet.Vet</div>
+      <div>Vet Phone: @pet.VetPhone</div>
+      <div>Notes: @pet.Notes</div>
       <a href='@Url.Action("Details", new { id = pet.PetId })'>
         <button>View Details</button>
       </a>
@@ -27,9 +34,6 @@
 <a href='@Url.Action("Create")'>
   <button class="green">Add New Pet</button>
 </a>
-@* <a href='@Url.Action("Create", "Patients")'>
-  <button class="green">Add New Patient</button>
-</a> *@
 <a href='@Url.Action("Index", "Home")'>
   <button>Home</button>
 </a>

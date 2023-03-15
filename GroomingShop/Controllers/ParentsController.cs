@@ -39,15 +39,15 @@ namespace GroomingShop.Controllers
     public ActionResult Details(int id)
     {
       Parent thisParent = _db.Parents
-                          .Include(Parent => Parent.JoinEntities)
+                          .Include(parent => parent.JoinEntities)
                           .ThenInclude(join => join.Pet)
-                          .FirstOrDefault(Parent => Parent.ParentId == id);
+                          .FirstOrDefault(parent => parent.ParentId == id);
       return View(thisParent);
     }
 
     public ActionResult Edit(int id)
     {
-      Parent thisParent = _db.Parents.FirstOrDefault(Parent => Parent.ParentId == id);
+      Parent thisParent = _db.Parents.FirstOrDefault(parent => parent.ParentId == id);
       return View(thisParent);
     }
 
@@ -61,38 +61,33 @@ namespace GroomingShop.Controllers
 
     public ActionResult Delete(int id)
     {
-      Parent thisParent = _db.Parents.FirstOrDefault(Parent => Parent.ParentId == id);
+      Parent thisParent = _db.Parents.FirstOrDefault(parent => parent.ParentId == id);
       return View(thisParent);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      Parent thisParent = _db.Parents.FirstOrDefault(Parent => Parent.ParentId == id);
+      Parent thisParent = _db.Parents.FirstOrDefault(parent => parent.ParentId == id);
       _db.Parents.Remove(thisParent);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
-    public ActionResult AddPet(int id)
-    {
-      Parent thisParent = _db.Parents.FirstOrDefault(items => items.ParentId == id);
-      ViewBag.PetId = new SelectList(_db.Pets, "PetId", "Name");
-      return View(thisParent);
-    }
-
     [HttpPost]
-    public ActionResult AddPet(Parent Parent, int petId)
+    public ActionResult AddPet(Pet pet, int parentId)
     {
+      _db.Pets.Add(pet);
+      _db.SaveChanges();
       #nullable enable
-      ParentPet? joinEntity = _db.ParentPets.FirstOrDefault(join => (join.PetId == petId && join.ParentId == Parent.ParentId));
+      ParentPet? joinEntity = _db.ParentPets.FirstOrDefault(join => (join.PetId == pet.PetId && join.ParentId == parentId));
       #nullable disable
-      if (joinEntity == null && petId != 0)
+      if (joinEntity == null && parentId != 0)
       {
-        _db.ParentPets.Add(new ParentPet() { PetId = petId, ParentId = Parent.ParentId });
+        _db.ParentPets.Add(new ParentPet() { PetId = pet.PetId, ParentId = parentId});
         _db.SaveChanges();
       }
-      return RedirectToAction("Details", new { id = Parent.ParentId });
+      return RedirectToAction("Index");
     }
 
      [HttpPost]

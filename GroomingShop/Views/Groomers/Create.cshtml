@@ -11,12 +11,32 @@
 {
   <div class="form-row">
     <div class="form-text-input-area">
+      <span>@Html.LabelFor(model => model.Role, "Role")</span>
+      <span>@Html.TextBoxFor(model => model.Role)</span>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-text-input-area">
       <span>@Html.LabelFor(model => model.FirstName, "First Name")</span>
       <span>@Html.TextBoxFor(model => model.FirstName)</span>
     </div>
+  </div>
+  <div class="form-row">
     <div class="form-text-input-area">
       <span>@Html.LabelFor(model => model.LastName, "Last Name")</span>
       <span>@Html.TextBoxFor(model => model.LastName)</span>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-text-input-area">
+      <span>@Html.LabelFor(model => model.HireDate, "Hire Date")</span>
+      <span>@Html.TextBoxFor(model => model.HireDate, new { @type="date"} )</span>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-text-input-area">
+      <span>@Html.LabelFor(model => model.Notes, "Notes")</span>
+      <span>@Html.TextAreaFor(model => model.Notes)</span>
     </div>
   </div>
   <button class="green" type="submit">Add New Groomer</button>

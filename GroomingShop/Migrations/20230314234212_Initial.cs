@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -18,9 +19,14 @@ namespace GroomingShop.Migrations
                 {
                     GroomerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Role = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     FirstName = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     LastName = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    HireDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    Notes = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -38,6 +44,12 @@ namespace GroomingShop.Migrations
                     FirstName = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     LastName = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Phone = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Email = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Notes = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -55,6 +67,16 @@ namespace GroomingShop.Migrations
                     Name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Breed = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Gender = table.Column<string>(type: "varchar(1)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Weight = table.Column<int>(type: "int", nullable: false),
+                    VaccExpDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    Vet = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    VetPhone = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Notes = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -69,12 +91,14 @@ namespace GroomingShop.Migrations
                 {
                     AppointmentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    StartTime = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    EndTime = table.Column<string>(type: "longtext", nullable: true)
+                    Date = table.Column<DateOnly>(type: "date", nullable: false),
+                    StartTime = table.Column<TimeOnly>(type: "time(6)", nullable: false),
+                    EndTime = table.Column<TimeOnly>(type: "time(6)", nullable: false),
+                    Notes = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     GroomerId = table.Column<int>(type: "int", nullable: false),
-                    PetId = table.Column<int>(type: "int", nullable: false)
+                    ParentPetId = table.Column<int>(type: "int", nullable: false),
+                    PetId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -86,16 +110,21 @@ namespace GroomingShop.Migrations
                         principalColumn: "GroomerId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Appointments_Pets_PetId",
-                        column: x => x.PetId,
+                        name: "FK_Appointments_Pets_ParentPetId",
+                        column: x => x.ParentPetId,
                         principalTable: "Pets",
                         principalColumn: "PetId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Appointments_Pets_PetId",
+                        column: x => x.PetId,
+                        principalTable: "Pets",
+                        principalColumn: "PetId");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "ParentPet",
+                name: "ParentPets",
                 columns: table => new
                 {
                     ParentPetId = table.Column<int>(type: "int", nullable: false)
@@ -105,15 +134,15 @@ namespace GroomingShop.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ParentPet", x => x.ParentPetId);
+                    table.PrimaryKey("PK_ParentPets", x => x.ParentPetId);
                     table.ForeignKey(
-                        name: "FK_ParentPet_Parents_ParentId",
+                        name: "FK_ParentPets_Parents_ParentId",
                         column: x => x.ParentId,
                         principalTable: "Parents",
                         principalColumn: "ParentId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ParentPet_Pets_PetId",
+                        name: "FK_ParentPets_Pets_PetId",
                         column: x => x.PetId,
                         principalTable: "Pets",
                         principalColumn: "PetId",
@@ -127,18 +156,23 @@ namespace GroomingShop.Migrations
                 column: "GroomerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Appointments_ParentPetId",
+                table: "Appointments",
+                column: "ParentPetId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Appointments_PetId",
                 table: "Appointments",
                 column: "PetId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ParentPet_ParentId",
-                table: "ParentPet",
+                name: "IX_ParentPets_ParentId",
+                table: "ParentPets",
                 column: "ParentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ParentPet_PetId",
-                table: "ParentPet",
+                name: "IX_ParentPets_PetId",
+                table: "ParentPets",
                 column: "PetId");
         }
 
@@ -148,7 +182,7 @@ namespace GroomingShop.Migrations
                 name: "Appointments");
 
             migrationBuilder.DropTable(
-                name: "ParentPet");
+                name: "ParentPets");
 
             migrationBuilder.DropTable(
                 name: "Groomers");
