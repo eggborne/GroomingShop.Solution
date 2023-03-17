@@ -8,8 +8,7 @@
 <h2>Pet Details for @Html.DisplayFor(model => model.Name)</h2>
 
 
-<ul>
-  <li>
+  <div class="pet-detail-card">
     <div>Breed: @Html.DisplayFor(model => model.Breed)</div>
     <div>Gender: @Html.DisplayFor(model => model.Gender)</div>
     <div>Weight: @Model.Weight</div>
@@ -17,12 +16,12 @@
     <div>Vet: @Model.Vet</div>
     <div>Vet Phone: @Model.VetPhone</div>
     <div>Notes: @Model.Notes</div>
-  </li>
-</ul>
+  </div>
+
 <h3>Parents:</h3>
 <ul>
   @foreach(ParentPet join in Model.JoinEntities) {
-    <li>
+    <li style="width: max-content; padding: 1rem;">
       @join.Parent.FirstName @join.Parent.LastName
     </li>
   } 
