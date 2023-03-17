@@ -1,10 +1,13 @@
+
 using System.Collections.Generic;
+using System;
 
 namespace GroomingShop.Models
 {
-  public class Parent
+  public class Employee
   {
-    public int ParentId { get; set; }
+    public int EmployeeId { get; set; }
+    public string Position { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Email { get; set; }
@@ -18,6 +21,7 @@ namespace GroomingShop.Models
     public string EmergencyContact { get; set; }
     public string EmergencyPhone { get; set; }
     public string Notes { get; set; }
-    public List<ParentPet> JoinEntities { get; }
+    public DateTime HireDate { get; set; }
+    public List<Appointment> Appointments { get; set;}
   }
 }

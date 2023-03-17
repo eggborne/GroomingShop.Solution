@@ -16,7 +16,7 @@ body {
 }
 
 header, footer {
-  position:fixed;
+  position: absolute;
 	left:0px;
 	width:100%;
 	background:#111;
@@ -50,10 +50,11 @@ ul {
 	flex-direction: column;
 	gap: 0.5rem;
 	border-radius: 0.5rem;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 
 li {
+	position: relative;
 	background-color: #ffffff22;
 	padding: 0 1rem;
 	border-radius: 0.5rem;
@@ -66,14 +67,14 @@ textarea {
   height: 4rem;
 }
 
-.groomer-list > li {
+.employee-list > li {
   gap: 1rem;
   width: 95vw;
 }
-.groomer-list > li > div {
+.employee-list > li > div {
   width: 10rem;
 }
-.groomer-list > li > div:nth-child(3) {
+.employee-list > li > div:nth-child(3) {
   flex-grow: 1;
 }
 
@@ -86,6 +87,11 @@ textarea {
   width: min-content;
   min-width: 8rem;
   justify-content: center;
+}
+
+.appointment-list {
+	gap: 3rem;
+	margin-top: 3rem;
 }
 
 form {
@@ -188,8 +194,51 @@ button:active {
 }
 
 footer {
+	position: fixed;
 	bottom:0px;
   height: calc(var(--header-height) / 2);
   justify-content: center;
 	padding:8px;
+}
+
+.floating-header {
+	position: absolute;
+	font-size: 1.25rem;
+	font-weight: bold;
+	height: 2.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	left: 1rem;
+	translate: 0 -50%;
+	background-color: rgb(55, 90, 55);
+	border-radius: inherit;
+	padding: 0.5rem 1rem;
+	box-shadow: 1px 1px 1px black;
+}
+
+.error-message {
+	height: 10rem;
+	color: red;
+	opacity: 0;
+}
+
+.error-message.overlap {
+	animation: flash-on 2000ms ease forwards;
+}
+
+@keyframes flash-on {
+	0% {
+		opacity: 0;
+	}
+	20% {
+		opacity: 1;
+	}
+	80% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
 }

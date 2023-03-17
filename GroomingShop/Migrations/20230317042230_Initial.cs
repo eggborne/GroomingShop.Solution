@@ -14,24 +14,44 @@ namespace GroomingShop.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Groomers",
+                name: "Employees",
                 columns: table => new
                 {
-                    GroomerId = table.Column<int>(type: "int", nullable: false)
+                    EmployeeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Role = table.Column<string>(type: "longtext", nullable: true)
+                    Position = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     FirstName = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     LastName = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    HireDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Email = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Phone = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AlternatePhone = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AddressLine1 = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AddressLine2 = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    City = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    State = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ZipCode = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    EmergencyContact = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    EmergencyPhone = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Notes = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    HireDate = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Groomers", x => x.GroomerId);
+                    table.PrimaryKey("PK_Employees", x => x.EmployeeId);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -45,9 +65,25 @@ namespace GroomingShop.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     LastName = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    Email = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Phone = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Email = table.Column<string>(type: "longtext", nullable: true)
+                    AlternatePhone = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AddressLine1 = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AddressLine2 = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    City = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    State = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ZipCode = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    EmergencyContact = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    EmergencyPhone = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Notes = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
@@ -68,9 +104,12 @@ namespace GroomingShop.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Breed = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    Weight = table.Column<int>(type: "int", nullable: false),
                     Gender = table.Column<string>(type: "varchar(1)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Weight = table.Column<int>(type: "int", nullable: false),
+                    Color = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     VaccExpDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Vet = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -91,23 +130,24 @@ namespace GroomingShop.Migrations
                 {
                     AppointmentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    ParentId = table.Column<int>(type: "int", nullable: false),
+                    PetId = table.Column<int>(type: "int", nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     StartTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    EndTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Duration = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<float>(type: "float", nullable: false),
                     Notes = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    GroomerId = table.Column<int>(type: "int", nullable: false),
-                    ParentId = table.Column<int>(type: "int", nullable: false),
-                    PetId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Appointments", x => x.AppointmentId);
                     table.ForeignKey(
-                        name: "FK_Appointments_Groomers_GroomerId",
-                        column: x => x.GroomerId,
-                        principalTable: "Groomers",
-                        principalColumn: "GroomerId",
+                        name: "FK_Appointments_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "EmployeeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Appointments_Parents_ParentId",
@@ -124,6 +164,27 @@ namespace GroomingShop.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+                migrationBuilder.Sql(@"
+                CREATE TRIGGER tr_no_overlapping_appointments
+                BEFORE INSERT ON Appointments
+                FOR EACH ROW
+                BEGIN
+                    DECLARE cnt INT;
+
+                    SELECT COUNT(*) INTO cnt
+                    FROM Appointments
+                    WHERE EmployeeId = NEW.EmployeeId
+                    AND Date = NEW.Date
+                    AND (
+                        (StartTime <= NEW.StartTime AND StartTime + INTERVAL Duration MINUTE > NEW.StartTime)
+                        OR (StartTime > NEW.StartTime AND NEW.StartTime + INTERVAL NEW.Duration MINUTE > StartTime)
+                    );
+
+                    IF cnt > 0 THEN
+                        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Overlapping appointments not allowed';
+                    END IF;
+                END;");
+
             migrationBuilder.CreateTable(
                 name: "ParentPets",
                 columns: table => new
@@ -131,7 +192,9 @@ namespace GroomingShop.Migrations
                     ParentPetId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     ParentId = table.Column<int>(type: "int", nullable: false),
-                    PetId = table.Column<int>(type: "int", nullable: false)
+                    PetId = table.Column<int>(type: "int", nullable: false),
+                    Relationship = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
@@ -152,9 +215,9 @@ namespace GroomingShop.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Appointments_GroomerId",
+                name: "IX_Appointments_EmployeeId",
                 table: "Appointments",
-                column: "GroomerId");
+                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_ParentId",
@@ -186,7 +249,7 @@ namespace GroomingShop.Migrations
                 name: "ParentPets");
 
             migrationBuilder.DropTable(
-                name: "Groomers");
+                name: "Employees");
 
             migrationBuilder.DropTable(
                 name: "Parents");

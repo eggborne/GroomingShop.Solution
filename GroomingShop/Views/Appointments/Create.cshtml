@@ -4,12 +4,12 @@
 
 @model GroomingShop.Models.Appointment
 
-<h2>New appointment for @ViewBag.Groomer.Role @ViewBag.Groomer.FirstName @ViewBag.Groomer.LastName</h2>
+<h2>New appointment for @ViewBag.Employee.Position @ViewBag.Employee.FirstName @ViewBag.Employee.LastName</h2>
 
 
 @using (Html.BeginForm())
 {
-  <input hidden name="groomerId" value=@ViewBag.Groomer.GroomerId>
+  <input hidden name="employeeId" value=@ViewBag.Employee.EmployeeId>
   <div class="form-column">
     <div class="form-text-input-area">
       <span>@Html.LabelFor(model => model.Date)</span>
@@ -20,8 +20,8 @@
       <span>@Html.TextBoxFor(model => model.StartTime, new { @type="time"} )</span>
     </div>
     <div class="form-text-input-area">
-      <span>@Html.LabelFor(model => model.EndTime, "End Time")</span>
-      <span>@Html.TextBoxFor(model => model.EndTime, new { @type="time"} )</span>
+      <span>@Html.LabelFor(model => model.Duration, "Duration")</span>
+      <span>@Html.TextBoxFor(model => model.Duration, new { @type="number"} ) minutes</span>
     </div>
   </div>
   <div class="form-row">
@@ -33,6 +33,7 @@
     <span>@Html.DropDownList("petId")</span>
   </div>
   <button class="green" type="submit">Add Appointment</button>
+  <div class='@($"error-message {@ViewBag.ClassName}")'>@ViewBag.ErrorMessage</div>
 }
 
 <a href='@Url.Action("Index")'>

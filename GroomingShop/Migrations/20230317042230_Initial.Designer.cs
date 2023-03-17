@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroomingShop.Migrations
 {
     [DbContext(typeof(GroomingShopContext))]
-    [Migration("20230315053956_Initial")]
+    [Migration("20230317042230_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,10 +30,10 @@ namespace GroomingShop.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime(6)");
+                    b.Property<int>("Duration")
+                        .HasColumnType("int");
 
-                    b.Property<int>("GroomerId")
+                    b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Notes")
@@ -45,12 +45,15 @@ namespace GroomingShop.Migrations
                     b.Property<int>("PetId")
                         .HasColumnType("int");
 
+                    b.Property<float>("Price")
+                        .HasColumnType("float");
+
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("AppointmentId");
 
-                    b.HasIndex("GroomerId");
+                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("ParentId");
 
@@ -59,11 +62,32 @@ namespace GroomingShop.Migrations
                     b.ToTable("Appointments");
                 });
 
-            modelBuilder.Entity("GroomingShop.Models.Groomer", b =>
+            modelBuilder.Entity("GroomingShop.Models.Employee", b =>
                 {
-                    b.Property<int>("GroomerId")
+                    b.Property<int>("EmployeeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<string>("AddressLine1")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("AddressLine2")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("AlternatePhone")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("City")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EmergencyContact")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EmergencyPhone")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("longtext");
@@ -77,12 +101,21 @@ namespace GroomingShop.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Role")
+                    b.Property<string>("Phone")
                         .HasColumnType("longtext");
 
-                    b.HasKey("GroomerId");
+                    b.Property<string>("Position")
+                        .HasColumnType("longtext");
 
-                    b.ToTable("Groomers");
+                    b.Property<string>("State")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ZipCode")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("EmployeeId");
+
+                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("GroomingShop.Models.Parent", b =>
@@ -91,7 +124,25 @@ namespace GroomingShop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("AddressLine1")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("AddressLine2")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("AlternatePhone")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("City")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Email")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EmergencyContact")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EmergencyPhone")
                         .HasColumnType("longtext");
 
                     b.Property<string>("FirstName")
@@ -104,6 +155,12 @@ namespace GroomingShop.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Phone")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("State")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ZipCode")
                         .HasColumnType("longtext");
 
                     b.HasKey("ParentId");
@@ -123,6 +180,9 @@ namespace GroomingShop.Migrations
                     b.Property<int>("PetId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Relationship")
+                        .HasColumnType("longtext");
+
                     b.HasKey("ParentPetId");
 
                     b.HasIndex("ParentId");
@@ -140,6 +200,12 @@ namespace GroomingShop.Migrations
 
                     b.Property<string>("Breed")
                         .HasColumnType("longtext");
+
+                    b.Property<string>("Color")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Gender")
                         .IsRequired()
@@ -170,9 +236,9 @@ namespace GroomingShop.Migrations
 
             modelBuilder.Entity("GroomingShop.Models.Appointment", b =>
                 {
-                    b.HasOne("GroomingShop.Models.Groomer", "Groomer")
+                    b.HasOne("GroomingShop.Models.Employee", "Employee")
                         .WithMany("Appointments")
-                        .HasForeignKey("GroomerId")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -188,7 +254,7 @@ namespace GroomingShop.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Groomer");
+                    b.Navigation("Employee");
 
                     b.Navigation("Parent");
 
@@ -214,7 +280,7 @@ namespace GroomingShop.Migrations
                     b.Navigation("Pet");
                 });
 
-            modelBuilder.Entity("GroomingShop.Models.Groomer", b =>
+            modelBuilder.Entity("GroomingShop.Models.Employee", b =>
                 {
                     b.Navigation("Appointments");
                 });

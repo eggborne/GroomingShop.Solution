@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using GroomingShop.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace GroomingShop.Controllers
 {
@@ -19,34 +20,49 @@ namespace GroomingShop.Controllers
     public ActionResult Index()
     {
       List<Appointment> model = _db.Appointments
-                                .Include(appointment => appointment.Groomer)
+                                .Include(appointment => appointment.Employee)
                                 .Include(appointment => appointment.Parent)
                                 .Include(appointment => appointment.Pet)
                                 .ToList();
       return View(model);
     }
 
+  
+    #nullable enable
     public ActionResult Create(int id)
     {
-      ViewBag.Groomer = _db.Groomers.FirstOrDefault(groomer => groomer.GroomerId == id);
+      ViewBag.Employee = _db.Employees.FirstOrDefault(employee => employee.EmployeeId == id);
       ViewBag.ParentId = new SelectList(_db.Parents, "ParentId", "LastName");
       ViewBag.PetId = new SelectList(_db.Pets, "PetId", "Name");
       return View();
     }
+    #nullable disable
 
     [HttpPost]
     public ActionResult Create(Appointment appointment)
     {
-      _db.Appointments.Add(appointment);
+      try 
+      {
+        _db.Appointments.Add(appointment);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
+      catch(DbUpdateException error)
+      {
+        ViewBag.ClassName = "overlap";
+        ViewBag.ErrorMessage = error.InnerException.Message;
+        ViewBag.Employee = _db.Employees.FirstOrDefault(employee => employee.EmployeeId == appointment.EmployeeId);
+        ViewBag.ParentId = new SelectList(_db.Parents, "ParentId", "LastName");
+        ViewBag.PetId = new SelectList(_db.Pets, "PetId", "Name");
+        return View();
+      }
 
-      _db.SaveChanges();
-      return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id)
     {
       Appointment thisAppointment = _db.Appointments
-                                    .Include(appointment => appointment.Groomer)
+                                    .Include(appointment => appointment.Employee)
                                     .Include(appointment => appointment.Parent)
                                     .Include(appointment => appointment.Pet)
                                     .FirstOrDefault(appointment => appointment.AppointmentId == id);

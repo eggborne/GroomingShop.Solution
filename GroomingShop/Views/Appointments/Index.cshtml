@@ -16,9 +16,10 @@
   @foreach(Appointment appointment in Model)
   {
     <li>
+      <div class="floating-header">@DateOnly.FromDateTime(appointment.Date) @TimeOnly.FromDateTime(appointment.StartTime) - @appointment.Duration minutes</div>
       <div>@appointment.Pet.Name | @appointment.Pet.Breed</div>
       <div>@appointment.Parent.FirstName @appointment.Parent.LastName</div>
-      <div>@appointment.Groomer.Role: @appointment.Groomer.FirstName @appointment.Groomer.LastName |@DateOnly.FromDateTime(appointment.Date) @TimeOnly.FromDateTime(appointment.StartTime) to @TimeOnly.FromDateTime(appointment.EndTime)</div>
+      <div>@appointment.Employee.Position: @appointment.Employee.FirstName @appointment.Employee.LastName</div>
       <a href='@Url.Action("Edit", new { id = appointment.AppointmentId })'>
         <button class="yellow">Edit</button>
       </a>
@@ -27,7 +28,7 @@
 </ul>
 
 @* <a href='@Url.Action("Create")'>
-  <button class="green">Add New Groomer</button>
+  <button class="green">Add New Employee</button>
 </a>
 <a href='@Url.Action("Create", "Patients")'>
   <button class="green">Add New Patient</button>

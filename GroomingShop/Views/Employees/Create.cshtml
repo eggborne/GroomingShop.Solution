@@ -2,17 +2,17 @@
   Layout = "_Layout";
 }
 
-@model GroomingShop.Models.Groomer
+@model GroomingShop.Models.Employee
 
-<h2>Add a new groomer</h2>
+<h2>Add a new employee</h2>
 
 
 @using (Html.BeginForm())
 {
   <div class="form-row">
     <div class="form-text-input-area">
-      <span>@Html.LabelFor(model => model.Role, "Role")</span>
-      <span>@Html.TextBoxFor(model => model.Role)</span>
+      <span>@Html.LabelFor(model => model.Position, "Position")</span>
+      <span>@Html.TextBoxFor(model => model.Position)</span>
     </div>
   </div>
   <div class="form-row">
@@ -39,7 +39,7 @@
       <span>@Html.TextAreaFor(model => model.Notes)</span>
     </div>
   </div>
-  <button class="green" type="submit">Add New Groomer</button>
+  <button class="green" type="submit">Add New Employee</button>
 }
 
 <a href='@Url.Action("Index")'>
