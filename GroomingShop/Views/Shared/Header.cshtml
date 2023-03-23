@@ -1,1 +1,31 @@
-<header><h1>Grooming Shop Dashboard</h1></header>
+@using GroomingShop.ViewModels
+
+@model LoginViewModel
+
+<div id="delete-modal" class="modal">
+  <div class="modal-message">Log in</div>
+  <div class="button-area">
+  @if(!ViewData.ModelState.IsValid) 
+  {
+  @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:") 
+  }
+
+  @using (Html.BeginForm("Index", "Home"))
+  {
+    @Html.LabelFor(m => m.Email)
+    @Html.TextBoxFor(m => m.Email)
+
+    @Html.LabelFor(m => m.Password)
+    @Html.EditorFor(m => m.Password)
+
+    <button class="green" type="submit">Log in</button>
+  }
+  </div>
+  <div class="button-area">
+    <button onclick="hideModal('delete')">Cancel</button>
+  </div>
+</div>
+
+<header>
+  <h1>Grooming Shop Dashboard</h1>
+</header>

@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace GroomingShop.Models
 {
-  public class GroomingShopContext : DbContext
+  public class GroomingShopContext : IdentityDbContext<ApplicationUser>
   {
     public DbSet<Employee> Employees { get; set; }
     public DbSet<Pet> Pets { get; set; }

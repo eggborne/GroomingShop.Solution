@@ -25,8 +25,10 @@
     <div class="form-text-input-area">
       <span>@Html.LabelFor(model => model.Gender, "Gender")</span>
       <span>@Html.DropDownListFor(model => model.Gender, new List<SelectListItem>
-                   { new SelectListItem{Text="Male", Value="M"},
-                     new SelectListItem{Text="Female", Value="F"}}, "Please select")
+          { 
+            new SelectListItem{Text="Male", Value="M"},
+            new SelectListItem{Text="Female", Value="F"}
+          }, "Please select")
       </span>
     </div>
   </div>

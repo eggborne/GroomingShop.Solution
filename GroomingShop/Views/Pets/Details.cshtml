@@ -5,14 +5,14 @@
 @model GroomingShop.Models.Pet
 @using GroomingShop.Models
 
-<h2>Pet Details for @Html.DisplayFor(model => model.Name)</h2>
+<h2>Pet Details for @Html.DisplayFor(model => model.Name) @foreach(ParentPet join in Model.JoinEntities) { @join.Parent.LastName }</h2>
 
 
   <div class="pet-detail-card">
     <div>Breed: @Html.DisplayFor(model => model.Breed)</div>
     <div>Gender: @Html.DisplayFor(model => model.Gender)</div>
-    <div>Weight: @Model.Weight</div>
-    <div>Exp. Date: @DateOnly.FromDateTime(Model.VaccExpDate)</div>
+    <div>Weight: @Model.Weight lbs</div>
+    <div>Vaccine Exp. Date: @DateOnly.FromDateTime(Model.VaccExpDate)</div>
     <div>Vet: @Model.Vet</div>
     <div>Vet Phone: @Model.VetPhone</div>
     <div>Notes: @Model.Notes</div>

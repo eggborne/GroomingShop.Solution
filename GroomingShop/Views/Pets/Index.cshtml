@@ -12,16 +12,14 @@
   <h3>No pets have been added yet!</h3>
 } 
 
-<ul>
+<ul class="capsule-list">
   @foreach(Pet pet in Model)
   {
     <li>
-      <div>@pet.Name</div>
+      <div><span>@pet.Name</span> <span>@pet.JoinEntities[0].Parent.LastName</span></div>
       <div>@pet.Breed</div>
       <div>
-        @foreach (ParentPet join in pet.JoinEntities) {
-          <span>@join.Parent.FirstName @join.Parent.LastName</span>
-        }
+          
       </div>
       
       <a href='@Url.Action("Details", new { id = pet.PetId })'>

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using GroomingShop.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace GroomingShop
 {
@@ -22,6 +23,20 @@ namespace GroomingShop
                         )
                       );
 
+      builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<GroomingShopContext>()
+                .AddDefaultTokenProviders();
+
+      builder.Services.Configure<IdentityOptions>(options =>
+      {
+        options.Password.RequireDigit = false;
+        options.Password.RequireLowercase = false;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = false;
+        options.Password.RequiredLength = 0;
+        options.Password.RequiredUniqueChars = 0;
+      });
+
       WebApplication app = builder.Build();
 
       // app.UseDeveloperExceptionPage();
@@ -30,9 +45,13 @@ namespace GroomingShop
 
       app.UseRouting();
 
+      app.UseAuthentication(); 
+      app.UseAuthorization();
+      
       app.MapControllerRoute(
           name: "default",
-          pattern: "{controller=Home}/{action=Index}/{id?}");
+          pattern: "{controller=Home}/{action=Index}/{id?}"
+        );
 
       app.Run();
     }
